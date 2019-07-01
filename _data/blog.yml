@@ -3,20 +3,12 @@
   href: /blog/
 
 # edit following lines to custom your blog page, make sure name is the same as href but capitalized first letter(except HTML)
-- name: Google Cloud Platform
-  href: /gcp/
-
-- name: Photo
-  href: /photo/
 
 - name: Data Science
-  href: /data_science/
+  href: /datascience/
 
 - name: Life
   href: /life/
 
 - name: School
   href: /school/
-
-- name: Life
-  href: /life/

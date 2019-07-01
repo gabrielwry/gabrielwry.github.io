@@ -16,11 +16,11 @@ author:  # change following line to your infomation.
   last_name: Wang # Be used at index page about me section.
   avatar: /static/assets/img/landing/avatar.jpg  # upload your avatar at directory and edit it.
   github_username: gabrielwry  # Leave blank if you don't have now
-  linkedin_id: gabrielwry # Leave blank if you don't have now
+  linkedin_id: runye-gabriel-wang-81bb59100 # Leave blank if you don't have now
   facebook_username:   # Leave blank if you don't have now
   twitter_username:   # Leave blank if you don't have now
   email: me@gabrielwry.com  # Leave blank if you don't have now
-  cv:   # An online CV can be printed as PDF, leave blank if you don't have now
+  cv:   /Resume.pdf # An online CV can be printed as PDF, leave blank if you don't have now
   # skill icons are on avatar's left and right side. Reference urls are http://fontawesome.io/ and http://fizzed.com/oss/font-mfizz
   skill_icon1:
     - name: icon-apache
@@ -28,7 +28,7 @@ author:  # change following line to your infomation.
   skill_icon2:
     - name: fa-linux
     - name: icon-apache
-  desc: Placeholder   # Describe yourself.
+  desc: I identify myself as a FC Barcelona fan with go-to-expert level knowledge about Game of Throne and some bearable soccer skill. But other people keep saying that I am the most talented and dedicated Data Scientist they've ever worked with, I honestly don't know why :)    # Describe yourself.
 
 # comment
 disqus:  # if you wanna comment feature, go to https://disqus.com/ to get your configuration; if not, comment following two lines.
@@ -51,8 +51,8 @@ gio:  # if you wanna this feature, go to https://www.growingio.com/ to get your 
 donation: off  # type 'on'/'off' to choice display donation button at post page or not
 
 ## carousels
-index_carousel: on  # index page carousel switch
-blog_carousel: on  # blog page carousel switch
+index_carousel: off # index page carousel switch
+blog_carousel: off  # blog page carousel switch
 
 # scss
 sass:
