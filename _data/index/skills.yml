@@ -2,5 +2,5 @@
 
 label: Ability
 id : cs
-aspects: Python, Data Mining, Machine Learning, SQL, GCP, Soccer, Chef
-percentage: 100, 85, 80, 90, 70, 90, 50
+aspects: Python, Scala, Machine Learning, SQL, ETL, Soccer, Chef
+percentage: 100, 90, 80, 90, 100, 90, 50
