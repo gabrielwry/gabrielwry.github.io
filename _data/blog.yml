@@ -4,8 +4,8 @@
 
 # edit following lines to custom your blog page, make sure name is the same as href but capitalized first letter(except HTML)
 
-- name: Data Science
-  href: /datascience/
+- name: Work
+  href: /work/
 
 - name: Life
   href: /life/
