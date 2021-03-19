@@ -28,7 +28,7 @@ author:  # change following line to your infomation.
   skill_icon2:
     - name: fa-linux
     - name: icon-apache
-  desc: I identify myself as a FC Barcelona fan with go-to-expert level knowledge about Game of Throne and some bearable soccer skill. But other people keep saying that I am the most talented and dedicated Data Scientist they've ever worked with, I honestly don't know why :)    # Describe yourself.
+  desc: A professional soccer fan with some bearable playwriting skill who does some Data Engineering on the side.  # Describe yourself.
 
 # comment
 disqus:  # if you wanna comment feature, go to https://disqus.com/ to get your configuration; if not, comment following two lines.
