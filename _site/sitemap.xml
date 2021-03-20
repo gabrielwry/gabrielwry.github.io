@@ -2,7 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
+        <loc>http://localhost:4000/work/2021/03/20/sub-array-max-sum-circular-array.html</loc>
+    </url>
+
+    <url>
         <loc>http://localhost:4000/work/2021/03/19/spark-concept-interview.html</loc>
+    </url>
+
+    <url>
+        <loc>http://localhost:4000/work/2021/03/19/number-of-province.html</loc>
+    </url>
+
+    <url>
+        <loc>http://localhost:4000/work/2021/03/19/longest-string-chain.html</loc>
     </url>
 
     <url>
