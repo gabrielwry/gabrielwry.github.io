@@ -3,6 +3,38 @@
     "data" : [
      
     {
+        "title" : "Interview - Random Pick with Blacklist - 2021-03-21",
+        "url" : "/work/2021/03/21/random-pick-with-black-list.html"
+    }
+    
+    ,
+    
+    
+    {
+        "title" : "Interview - Design a Data Pipeline - 2021-03-21",
+        "url" : "/work/2021/03/21/Design-a-End-to-End-Data-Pipeline.html"
+    }
+    
+    ,
+    
+    
+    {
+        "title" : "Interview - NoSql - 2021-03-21",
+        "url" : "/work/2021/03/21/no-sql-interview.html"
+    }
+    
+    ,
+    
+    
+    {
+        "title" : "Interview - HDFS - 2021-03-21",
+        "url" : "/work/2021/03/21/hdfs-interview.html"
+    }
+    
+    ,
+    
+    
+    {
         "title" : "Algorithm - Max Sub Array Sum of Circular Array - 2021-03-20",
         "url" : "/work/2021/03/20/sub-array-max-sum-circular-array.html"
     }
