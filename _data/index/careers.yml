@@ -1,13 +1,27 @@
 # careers section data
 # if you don't have language feature(language.yml is empty), ignore "i18n" items
 - name:
+    detail: Stash
+    i18n:
+  desc:
+    detail: I work at Stash as a Data Engineer focusing on delivering ETL Pipeline and Data Service Infrastructure.
+    i18n: company_a_desc
+  date:
+    detail: June.2021 - Present
+    i18n: company_a_date
+  job:
+    detail: Data Engineer
+    i18n: company_a_job
+  icon: fa-cog
+
+- name:
     detail: TiltingPoint
     i18n:
   desc:
-    detail: I work at TiltingPoint as a Data Engineer focusing on delivering ETL Pipeline and Data Service Infrastructure.
+    detail: I worked at TiltingPoint as a Data Engineer focusing on delivering ETL Pipeline and Data Service Infrastructure.
     i18n: company_a_desc
   date:
-    detail: Sept.2019 - Present
+    detail: Sept.2019 - June.2021
     i18n: company_a_date
   job:
     detail: Data Engineer
