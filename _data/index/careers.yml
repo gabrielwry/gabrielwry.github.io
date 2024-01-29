@@ -1,13 +1,26 @@
 # careers section data
 # if you don't have language feature(language.yml is empty), ignore "i18n" items
 - name:
+    detail: Peloton
+    i18n:
+  desc:
+    detail: I work at Peloton as a Data Platform Engineer focusing on Data Infrastructure.
+    i18n: company_a_desc
+  date:
+    detail: Nov.2023 - Present
+    i18n: company_a_date
+  job:
+    detail: Data Platform Engineer
+    i18n: company_a_job
+  icon: fa-cog
+- name:
     detail: Stash
     i18n:
   desc:
     detail: I work at Stash as a Data Engineer focusing on delivering Data Platform.
     i18n: company_a_desc
   date:
-    detail: June.2021 - Present
+    detail: June.2021 - Oct.2023
     i18n: company_a_date
   job:
     detail: Data Engineer
