@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Sunset Vista",
+    "location": "California Coast",
+    "url": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+    "description": "Golden hour along the Pacific Coast Highway",
+    "date": "2024-08-15",
+    "tags": ["nature", "sunset", "landscape"]
+  },
+  {
+    "id": 2,
+    "title": "City Nights",
+    "location": "New York, NY",
+    "url": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=80",
+    "description": "Manhattan skyline at twilight",
+    "date": "2024-06-20",
+    "tags": ["urban", "cityscape", "night"]
+  },
+  {
+    "id": 3,
+    "title": "Mountain Majesty",
+    "location": "Rocky Mountains, CO",
+    "url": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+    "description": "Snow-capped peaks in early spring",
+    "date": "2024-04-10",
+    "tags": ["mountains", "nature", "adventure"]
+  },
+  {
+    "id": 4,
+    "title": "Ocean Blue",
+    "location": "Maui, Hawaii",
+    "url": "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&q=80",
+    "description": "Crystal clear waters of the Pacific",
+    "date": "2024-02-28",
+    "tags": ["ocean", "travel", "tropical"]
+  },
+  {
+    "id": 5,
+    "title": "Forest Canopy",
+    "location": "Olympic National Park, OR",
+    "url": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
+    "description": "Ancient rainforest in the morning mist",
+    "date": "2023-10-05",
+    "tags": ["forest", "nature", "peaceful"]
+  },
+  {
+    "id": 6,
+    "title": "Desert Dreams",
+    "location": "Sedona, AZ",
+    "url": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80",
+    "description": "Red rocks under a vast blue sky",
+    "date": "2023-09-12",
+    "tags": ["desert", "landscape", "southwest"]
+  }
+]

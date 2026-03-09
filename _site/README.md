@@ -1,1 +1,0 @@
-My peronsal page based on https://jarrekk.github.io/Jalpc/html/2017/01/31/3-steps-to-setup-website-with-Jalpc.html

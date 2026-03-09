@@ -1,0 +1,9 @@
+.resume {
+  min-height: 100vh;
+  padding: 6rem 2rem 4rem;
+}
+
+.resume-container {
+  max-width: 900px;
+  margin: 0 auto;
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "title": "Reward.io",
+    "description": "An iOS app for managing and tracking rewards, incentives, and achievements. Built with Swift and SwiftUI for a native iOS experience.",
+    "technologies": ["iOS", "Swift", "SwiftUI"],
+    "link": "https://apps.apple.com/tt/app/reward-io/id6757575575",
+    "github": null,
+    "date": "2024"
+  },
+  {
+    "id": "2",
+    "title": "Scribble.io",
+    "description": "A creative iOS app for quick notes, sketches, and ideas. Designed for seamless capture and organization of your thoughts on the go.",
+    "technologies": ["iOS", "Swift", "SwiftUI"],
+    "link": "https://apps.apple.com/tt/app/scribble-io/id6757620165",
+    "github": null,
+    "date": "2024"
+  },
+  {
+    "id": "3",
+    "title": "Real-time Data Pipeline",
+    "description": "Designed and implemented a high-throughput data pipeline processing millions of events daily using Apache Spark, Kafka, and Debezium CDC.",
+    "technologies": ["Apache Spark", "Kafka", "Debezium", "Apache Hudi", "AWS"],
+    "link": null,
+    "github": null,
+    "date": "2024"
+  },
+  {
+    "id": "4",
+    "title": "Modern Data Platform",
+    "description": "Built a comprehensive data platform supporting ingestion, governance, and analytics for a team of data scientists and analysts.",
+    "technologies": ["Airflow", "Spark", "Kafka", "Deequ", "DataHub", "Looker"],
+    "link": null,
+    "github": null,
+    "date": "2022"
+  },
+  {
+    "id": "5",
+    "title": "ML Model Pipeline",
+    "description": "Delivered high-quality datasets powering production ML models for fraud detection, personalization, and customer LTV prediction.",
+    "technologies": ["Python", "Airflow", "Spark", "AWS", "Machine Learning"],
+    "link": null,
+    "github": null,
+    "date": "2023"
+  }
+]
