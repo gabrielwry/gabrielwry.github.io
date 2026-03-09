@@ -9,7 +9,7 @@ export interface Photo {
 }
 
 // Import photos data
-import photosData from '/data/photos/photos.json';
+import photosData from '../../data/photos/photos.json';
 
 export function getAllPhotos(): Photo[] {
   return photosData as Photo[];

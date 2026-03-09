@@ -1,4 +1,3 @@
-import matter from 'gray-matter';
 
 export interface WritingMetadata {
   title: string;
