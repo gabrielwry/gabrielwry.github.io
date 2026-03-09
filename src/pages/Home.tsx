@@ -4,6 +4,7 @@ export default function Home() {
   return (
     <div className="home">
       <div className="home-content">
+        <img src="/avatar.JPG" alt="Gabriel Wang" className="home-avatar" />
         <h1 className="home-title">
           Hi, I'm <span className="highlight">Gabriel Wang</span>
         </h1>
@@ -17,7 +18,7 @@ export default function Home() {
           <a href="https://github.com/gabrielwry" target="_blank" rel="noopener noreferrer" className="home-link">
             GitHub
           </a>
-          <a href="https://linkedin.com/in/gabrielwang" target="_blank" rel="noopener noreferrer" className="home-link">
+          <a href="https://www.linkedin.com/in/gabrielwry/" target="_blank" rel="noopener noreferrer" className="home-link">
             LinkedIn
           </a>
         </div>
