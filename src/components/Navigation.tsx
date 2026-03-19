@@ -33,11 +33,6 @@ export default function Navigation() {
               Projects
             </Link>
           </li>
-          <li>
-            <Link to="/photos" className={isActive('/photos') ? 'active' : ''}>
-              Photos
-            </Link>
-          </li>
         </ul>
       </div>
     </nav>
