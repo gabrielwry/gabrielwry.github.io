@@ -8,6 +8,11 @@ export default function Resume() {
   return (
     <div className="resume">
       <div className="resume-container">
+        <div className="resume-header">
+          <a href="/Gabriel_Wang_Resume.pdf" download className="resume-download">
+            Download PDF
+          </a>
+        </div>
         <MarkdownRenderer content={resumeContent} />
       </div>
     </div>
