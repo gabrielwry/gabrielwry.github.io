@@ -4,7 +4,13 @@
       "Bash(git add -A)",
       "Bash(git commit:*)",
       "Bash(npm run build)",
-      "Bash(git push origin master)"
+      "Bash(git push origin master)",
+      "Bash(git branch -m master main)",
+      "Bash(git fetch origin)",
+      "Bash(git branch -u origin/main main)",
+      "Bash(git remote set-head origin -a)",
+      "Bash(git add .github/workflows/deploy.yml)",
+      "Bash(git push origin main)"
     ]
   }
 }
